@@ -33,6 +33,7 @@ const DashboardScreen = () => {
             const data = doc.data();
               if (data.lastPeriodDate && data.cycleLength) {
                 const cycleLen = parseInt(data.cycleLength);
+                setDiffDays(data.diffDays);
                 console.log(`Log:cycleLen: ${cycleLen}, parseInt(data.cycleLength): ${parseInt(data.cycleLength)}`);
                 setCycleLength(cycleLen);
                 const lastPeriod = new Date(data.lastPeriodDate.toDate());
@@ -170,17 +171,16 @@ const updatePeriodData = async () => {
     const newNextPeriodDate = calculateDate(newPeriodDate, cycleLen);
 
     if (newNextPeriodDate) {
-      // Dateオブジェクトから時間情報を取り除き、日付のみを考慮
-      const formattedNewNextPeriodDate = new Date(newNextPeriodDate.toISOString().split('T')[0]);
-      const formattedLastPeriodDate = new Date(lastPeriodDate + 'T00:00:00Z');  // ISO日付に 'Z' を追加してUTCとして解釈
+      const formattedNewPeriodDate = new Date(newPeriodDate.toISOString().split('T')[0]);
+      const formattedLastExpecetedPeriodDate = new Date(nextPeriodDate + 'T00:00:00Z');
 
-      const daysDiff = (formattedNewNextPeriodDate - formattedLastPeriodDate) / (1000 * 60 * 60 * 24);
+      const daysDiff = (formattedNewPeriodDate - formattedLastExpecetedPeriodDate) / (1000 * 60 * 60 * 24);
 
-      console.log(`Log diff : formattedNewNextPeriodDate: ${formattedNewNextPeriodDate}, formattedLastPeriodDate: ${formattedLastPeriodDate}, daysDiff: ${daysDiff}`);
+      console.log(`Log diff : formattedNewPeriodDate: ${formattedNewPeriodDate}, formattedLastExpecetedPeriodDate: ${formattedLastExpecetedPeriodDate}, daysDiff: ${daysDiff}`);
       setDiffDays(Math.round(daysDiff));
       setLastPeriodDate(newPeriodDate.toISOString().split('T')[0]);
       setNextPeriodDate(newNextPeriodDate.toISOString().split('T')[0]);
-      setCycleLength(cycleLen); // State を更新（画面表示用）
+      setCycleLength(cycleLen);
 
       await firestore().collection('users').doc(userId).set({
         lastPeriodDate: firestore.Timestamp.fromDate(newPeriodDate),
@@ -188,7 +188,6 @@ const updatePeriodData = async () => {
         diffDays: Math.round(daysDiff)
       }, { merge: true });
 
-      // State 更新を待たずに直接値を使う
       updatePeriodDaysColors(newPeriodDate, parseInt(userData.periodDuration || 0), cycleLen);
 
       Alert.alert(
