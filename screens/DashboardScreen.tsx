@@ -164,6 +164,8 @@ const updatePeriodData = async () => {
   }
 
   const newPeriodDate = new Date(selectedDate);
+  const oldNextPeriodDate = new Date(nextPeriodDate);
+
   const doc = await firestore().collection('users').doc(userId).get();
   if (doc.exists) {
     const userData = doc.data();
@@ -182,8 +184,11 @@ const updatePeriodData = async () => {
       setNextPeriodDate(newNextPeriodDate.toISOString().split('T')[0]);
       setCycleLength(cycleLen);
 
+      console.log(`Log : oldNextPeriodDate: ${oldNextPeriodDate}`);
+
       await firestore().collection('users').doc(userId).set({
         lastPeriodDate: firestore.Timestamp.fromDate(newPeriodDate),
+        oldNextPeriodDate: firestore.Timestamp.fromDate(oldNextPeriodDate),
         cycleLength: cycleLen,
         diffDays: Math.round(daysDiff)
       }, { merge: true });
