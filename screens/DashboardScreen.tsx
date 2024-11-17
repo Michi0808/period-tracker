@@ -7,10 +7,12 @@ import texts from '../constants/texts';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
+// Cycle phases
 const FOLLICULAR_PERIOD = 6;
 const OVULATION_PERIOD = 3;
 
 const DashboardScreen = () => {
+  // State variables
   const navigation = useNavigation();
   const [currentDate, setCurrentDate] = useState('');
   const [nextPeriodDate, setNextPeriodDate] = useState('');
@@ -24,6 +26,7 @@ const DashboardScreen = () => {
     const today = new Date();
     setCurrentDate(today.toISOString().split('T')[0]);
 
+    // Fetch user data
     const fetchUserData = async () => {
       const userId = auth().currentUser?.uid;
       if (userId) {
@@ -36,6 +39,8 @@ const DashboardScreen = () => {
                 setDiffDays(data.diffDays);
                 console.log(`Log:cycleLen: ${cycleLen}, parseInt(data.cycleLength): ${parseInt(data.cycleLength)}`);
                 setCycleLength(cycleLen);
+
+                // Calculate dates
                 const lastPeriod = new Date(data.lastPeriodDate.toDate());
                 const nextPeriod = calculateDate(lastPeriod, cycleLen);
                 if (nextPeriod) {
@@ -53,6 +58,7 @@ const DashboardScreen = () => {
       }
     };
 
+    // Subscribe to auth state changes
     const unsubscribe = auth().onAuthStateChanged(user => {
     if (user) {
       fetchUserData();
@@ -62,6 +68,7 @@ const DashboardScreen = () => {
     return () => unsubscribe();
   }, []);
 
+  // Calculate next date
   const calculateDate = (baseDate, daysOffset) => {
     const resultDate = new Date(baseDate.getTime() + daysOffset * 24 * 60 * 60 * 1000);
     if (isNaN(resultDate.getTime())) {
@@ -71,6 +78,7 @@ const DashboardScreen = () => {
     return resultDate;
   };
 
+// Update calendar colors
 const updatePeriodDaysColors = (startPeriod, duration, cycleLen) => {
   console.log(`Log:Updating colors with startPeriod: ${startPeriod}, duration: ${duration}, cycleLen: ${cycleLen}`);
   const formatDay = date => date.toISOString().split('T')[0];
@@ -80,12 +88,15 @@ const updatePeriodDaysColors = (startPeriod, duration, cycleLen) => {
   console.log(`Log:Luteal Duration: ${lutealDuration}`);
 
   let newMarkedDates = {};
+
+  // Menstruation period
   for (let i = 0; i < duration; i++) {
     const periodDay = new Date(startPeriod);
     periodDay.setDate(startPeriod.getDate() + i);
     newMarkedDates[formatDay(periodDay)] = { selected: true, selectedColor: '#ED9B5F' };
   }
 
+    // Follicular phase
     const follicularStart = new Date(startPeriod);
     follicularStart.setDate(startPeriod.getDate() + duration); // Start the day after menstruation ends
     const follicularEnd = new Date(follicularStart);
@@ -95,6 +106,7 @@ const updatePeriodDaysColors = (startPeriod, duration, cycleLen) => {
       newMarkedDates[formatDay(day)] = { selected: true, selectedColor: '#DB5EA2' };
     }
 
+  // Ovulation period
   const ovulationStart = new Date(follicularEnd);
   ovulationStart.setDate(follicularEnd.getDate() + 1);
   const ovulationEnd = new Date(ovulationStart);
@@ -103,6 +115,7 @@ const updatePeriodDaysColors = (startPeriod, duration, cycleLen) => {
     newMarkedDates[formatDay(k)] = { selected: true, selectedColor: '#9E82CD' };
   }
 
+  // Luteal phase
   const lutealStart = new Date(ovulationEnd);
   lutealStart.setDate(ovulationEnd.getDate());
   const lutealEnd = new Date(lutealStart);
@@ -115,12 +128,14 @@ const updatePeriodDaysColors = (startPeriod, duration, cycleLen) => {
   setMarkedDates(newMarkedDates);
 };
 
+  // Handle day selection
   const onDayPress = (day) => {
     if (selectedDate !== day.dateString) {
       setSelectedDate(day.dateString);
     }
   };
 
+  // Generate calendar marks
   const getMarkedDates = () => {
     return {
       ...markedDates,
@@ -130,6 +145,7 @@ const updatePeriodDaysColors = (startPeriod, duration, cycleLen) => {
     };
   };
 
+  // Record period action
   const handleRecordPeriod = () => {
     if (!selectedDate) {
       Alert.alert('No date selected', 'Please select a date to record as a period date.');
