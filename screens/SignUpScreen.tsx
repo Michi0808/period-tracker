@@ -11,6 +11,7 @@ const SignUpScreen = ({ navigation }) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
+    // Handle sign-up process
     const handleSignUp = async () => {
         if (password !== confirmPassword) {
             alert(texts.passwordUnmatched);
@@ -26,13 +27,17 @@ const SignUpScreen = ({ navigation }) => {
         }
     };
 
+    // Navigate to Home screen
     const handleGoHome = () => {
         navigation.navigate('Home');  // Navigate to Home screen
     };
 
     return (
         <ScrollView style={styles.container}>
+            {/* Screen title */}
             <Text h3 style={styles.title}>Create Account</Text>
+
+            {/* Email input field */}
             <Input
                 placeholder="Email Address"
                 leftIcon={<Icon name="email" size={24} color="black" />}
@@ -41,6 +46,8 @@ const SignUpScreen = ({ navigation }) => {
                 containerStyle={styles.inputContainer}
                 inputStyle={styles.input}
             />
+
+            {/* Password input field */}
             <Input
                 placeholder="Password"
                 secureTextEntry={!passwordVisible}
@@ -58,6 +65,8 @@ const SignUpScreen = ({ navigation }) => {
                 containerStyle={styles.inputContainer}
                 inputStyle={styles.input}
             />
+
+            {/* Confirm password input field */}
             <Input
                 placeholder="Confirm Password"
                 secureTextEntry={!confirmPasswordVisible}
@@ -75,12 +84,16 @@ const SignUpScreen = ({ navigation }) => {
                 containerStyle={styles.inputContainer}
                 inputStyle={styles.input}
             />
+
+            {/* Sign up button */}
             <Button
                 title="Sign Up"
                 containerStyle={styles.buttonContainer}
                 buttonStyle={styles.button}
                 onPress={handleSignUp}
             />
+
+            {/* Go to Home button */}
             <Button
                 title="Go to Home"
                 type="clear"

@@ -27,8 +27,14 @@ const AppNavigator = () => {
         },
       }}
     >
+
+      {/* Home screen */}
       <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+
+      {/* Sign-up screen */}
       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+
+      {/* Last period date step 1 */}
       <Stack.Screen
         name="LastPeriodDate1"
         component={LastPeriodDateScreen1}
@@ -37,6 +43,8 @@ const AppNavigator = () => {
           headerBackTitleVisible: false
         }}
       />
+
+      {/* Last period date step 2 */}
       <Stack.Screen
         name="LastPeriodDate2"
         component={LastPeriodDateScreen2}
@@ -45,6 +53,8 @@ const AppNavigator = () => {
           headerBackTitleVisible: false
         }}
       />
+
+      {/* Last period date step 3 */}
       <Stack.Screen
         name="LastPeriodDate3"
         component={LastPeriodDateScreen3}
@@ -53,9 +63,17 @@ const AppNavigator = () => {
           headerBackTitleVisible: false
         }}
       />
+
+      {/* Confirmation screen */}
       <Stack.Screen name="ConfirmationScreen" component={ConfirmationScreen} options={{ headerShown: false }} />
+
+      {/* Dashboard screen */}
       <Stack.Screen name="Dashboard" component={DashboardScreen} options={{ headerShown: false }} />
+
+      {/* Settings screen */}
       <Stack.Screen name="Setting" component={SettingScreen} options={{ headerShown: false }} />
+
+      {/* Password reset screen */}
       <Stack.Screen name="PasswordReset" component={PasswordResetScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );

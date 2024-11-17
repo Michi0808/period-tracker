@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 const PasswordResetScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
 
+    // Handle password reset request
     const handlePasswordReset = async () => {
         if (!email) {
             Alert.alert("Error", "Please enter your email address");
@@ -21,7 +22,10 @@ const PasswordResetScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            {/* Screen header */}
             <Text style={styles.header}>Reset Password</Text>
+
+            {/* Email input */}
             <Input
                 placeholder="Enter your email"
                 value={email}
@@ -29,11 +33,15 @@ const PasswordResetScreen = ({ navigation }) => {
                 autoCapitalize="none"
                 containerStyle={styles.inputContainer}
             />
+
+            {/* Button to send password reset link */}
             <Button
                 title="Send Reset Link"
                 onPress={handlePasswordReset}
                 buttonStyle={styles.button}
             />
+
+            {/* Back to login link */}
             <TouchableOpacity
                 onPress={() => navigation.goBack()}
                 style={styles.backButton}

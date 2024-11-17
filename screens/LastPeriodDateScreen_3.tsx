@@ -13,6 +13,7 @@ const LastPeriodDateScreen3 = () => {
   const periodDuration = route.params.periodDuration;
 
   useLayoutEffect(() => {
+    // Set header options
     navigation.setOptions({
       headerTitle: 'Step 3/3',
       headerTitleAlign: 'center',
@@ -25,6 +26,7 @@ const LastPeriodDateScreen3 = () => {
     });
   }, [navigation]);
 
+  // Navigate to the confirmation screen
   const onNext = () => {
     navigation.navigate('ConfirmationScreen', {
       lastPeriodDate: lastPeriodDate.toISOString(),
@@ -34,7 +36,10 @@ const LastPeriodDateScreen3 = () => {
   };
   return (
     <View style={styles.container}>
+      {/* Display the question */}
       <Text style={styles.descriptionText}>{texts.periodCycleQuestion}</Text>
+
+      {/* Picker for cycle length */}
       <Picker
         selectedValue={selectedCycle}
         style={styles.picker}
@@ -49,6 +54,8 @@ const LastPeriodDateScreen3 = () => {
         <Picker.Item label="30 days" value="30" />
         <Picker.Item label="31 days" value="31" />
       </Picker>
+
+      {/* Done button */}
       <TouchableOpacity onPress={onNext} style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Done</Text>
       </TouchableOpacity>

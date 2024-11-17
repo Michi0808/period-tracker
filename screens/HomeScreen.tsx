@@ -4,22 +4,25 @@ import { Text, Input, Icon, Button } from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-const HomeScreen = ({ navigation }) => {
+    const HomeScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
 
+    // Handle user login
     const handleLogin = async () => {
         if (!email || !password) {
             Alert.alert("Error", "Please enter email and password");
             return;
         }
         try {
+            // Sign in the user
             const userCredential = await auth().signInWithEmailAndPassword(email, password);
-            // ログイン成功後、Firestoreからユーザーデータを取得
+
+            // Fetch user data from Firestore
             const userData = await firestore().collection('users').doc(userCredential.user.uid).get();
             if (userData.exists) {
-                // データを元にダッシュボードに遷移
+                // Navigate to Dashboard
                 navigation.navigate('Dashboard', { userData: userData.data() });
             } else {
                 Alert.alert("Error", "No user data found.");
@@ -31,9 +34,12 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            {/* Header */}
             <View style={styles.header}>
                 <Text style={styles.headerText}>Login</Text>
             </View>
+
+            {/* Email input */}
             <Input
                 placeholder="Email Address"
                 value={email}
@@ -41,6 +47,8 @@ const HomeScreen = ({ navigation }) => {
                 containerStyle={styles.inputContainer}
                 inputStyle={styles.input}
             />
+
+            {/* Password input */}
             <Input
                 placeholder="Password"
                 value={password}
@@ -56,12 +64,16 @@ const HomeScreen = ({ navigation }) => {
                 containerStyle={styles.inputContainer}
                 inputStyle={styles.input}
             />
+
+            {/* Login button */}
             <Button
                 title="Login"
                 onPress={handleLogin}
                 buttonStyle={[styles.button, { backgroundColor: '#BC7FCD' }]}
                 containerStyle={styles.buttonContainer}
             />
+
+            {/* Sign Up button */}
             <Button
                 title="Sign Up"
                 type="outline"
@@ -70,6 +82,8 @@ const HomeScreen = ({ navigation }) => {
                 containerStyle={styles.buttonContainer}
                 onPress={() => navigation.navigate('SignUp')}
             />
+
+            {/* Forgot Password link */}
             <TouchableOpacity
                 onPress={() => navigation.navigate('PasswordReset')}
                 style={styles.linkContainer}

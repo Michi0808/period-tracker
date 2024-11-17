@@ -222,10 +222,15 @@ const updatePeriodData = async () => {
 
   return (
     <View style={styles.container}>
+      {/* Settings button */}
       <TouchableOpacity style={styles.settingsButton} onPress={() => navigation.navigate('Setting')}>
         <Icon name="settings" size={30} color="#808080" />
       </TouchableOpacity>
+
+      {/* Display current date */}
       <Text style={styles.dateText}>{currentDate}</Text>
+
+      {/* Calendar component */}
       <Calendar
         current={currentDate}
         markedDates={getMarkedDates()}
@@ -237,12 +242,18 @@ const updatePeriodData = async () => {
         }}
         style={styles.calendar}
       />
+
+      {/* Record period button */}
       <TouchableOpacity onPress={handleRecordPeriod} style={styles.recordButton}>
         <Text style={styles.recordButtonText}>Record Period</Text>
       </TouchableOpacity>
+
+      {/* Message box for cycle info */}
       <View style={styles.messageBox}>
         <Text style={styles.messageText}>{texts.lastPeriodRecorded(diffDays)}</Text>
       </View>
+
+      {/* Next period info */}
       <Text style={styles.nextPeriodText}>Next Period Date: {nextPeriodDate}</Text>
     </View>
   );

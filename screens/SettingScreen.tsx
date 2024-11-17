@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 const SettingScreen = ({ navigation }) => {
+  // Handle user logout
   const handleLogout = async () => {
     try {
       await auth().signOut();
@@ -12,16 +13,22 @@ const SettingScreen = ({ navigation }) => {
     }
   };
 
+  // Navigate to Dashboard screen
   const navigateToDashboard = () => {
     navigation.navigate('Dashboard');
   };
 
   return (
     <View style={styles.container}>
+      {/* Screen header */}
       <Text style={styles.header}>Settings</Text>
+
+      {/* Logout button */}
       <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
         <Text style={styles.logoutButtonText}>Logout</Text>
       </TouchableOpacity>
+
+      {/* Dashboard navigation button */}
       <TouchableOpacity onPress={navigateToDashboard} style={styles.dashboardButton}>
         <Text style={styles.dashboardButtonText}>Go to Dashboard</Text>
       </TouchableOpacity>

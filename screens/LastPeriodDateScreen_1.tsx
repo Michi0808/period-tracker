@@ -11,6 +11,7 @@ const LastPeriodDateScreen1 = () => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
+  // Configure navigation header
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: 'Step 1/3',
@@ -24,16 +25,19 @@ const LastPeriodDateScreen1 = () => {
     });
   }, [navigation]);
 
+  // Handle date change
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
   };
 
+  // Show the date picker
   const showDatepicker = () => {
     setShow(true);
   };
 
+// Navigate to the next screen
 const goToNextScreen = () => {
   const formattedDate = date.toISOString();
   navigation.navigate('LastPeriodDate2', { lastPeriodDate: formattedDate });
@@ -41,13 +45,18 @@ const goToNextScreen = () => {
 
   return (
     <View style={styles.container}>
+      {/* Display the question text */}
       <Text style={styles.descriptionText}>{texts.lastPeriodQuestion}</Text>
+
+      {/* Show selected date and calendar icon */}
       <View style={styles.dateContainer}>
         <Text style={styles.dateText}>Last Period Date: {date.toLocaleDateString()}</Text>
         <TouchableOpacity onPress={showDatepicker} style={styles.iconButton}>
           <Icon name="calendar-today" size={24} color="#000" />
         </TouchableOpacity>
       </View>
+
+      {/* Date picker component */}
       {show && (
         <DateTimePicker
           testID="dateTimePicker"
@@ -58,6 +67,8 @@ const goToNextScreen = () => {
           onChange={onChange}
         />
       )}
+
+      {/* Next button */}
       <TouchableOpacity onPress={goToNextScreen} style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>

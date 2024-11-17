@@ -9,6 +9,7 @@ const LastPeriodDateScreen2 = ({ route, navigation }) => {
   const [selectedDuration, setSelectedDuration] = useState("unknown");
   const lastPeriodDate = new Date(route.params.lastPeriodDate);
 
+  // Set navigation header options
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: 'Step 2/3',
@@ -22,6 +23,7 @@ const LastPeriodDateScreen2 = ({ route, navigation }) => {
     });
   }, [navigation]);
 
+  // Navigate to the next screen
   const onNext = () => {
     navigation.navigate('LastPeriodDate3', {
         lastPeriodDate: lastPeriodDate.toISOString(),
@@ -31,7 +33,10 @@ const LastPeriodDateScreen2 = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      {/* Question text */}
       <Text style={styles.descriptionText}>{texts.periodDurationQuestion}</Text>
+
+      {/* Picker for selecting period duration */}
       <Picker
         selectedValue={selectedDuration}
         style={styles.picker}
@@ -46,6 +51,8 @@ const LastPeriodDateScreen2 = ({ route, navigation }) => {
         <Picker.Item label="7 days" value="7" />
         <Picker.Item label="8 day" value="8" />
       </Picker>
+
+      {/* Next button */}
       <TouchableOpacity onPress={onNext} style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>
