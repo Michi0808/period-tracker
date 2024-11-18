@@ -21,6 +21,8 @@ const DashboardScreen = () => {
   const [diffDays, setDiffDays] = useState(0);
   const [markedDates, setMarkedDates] = useState({});
   const [cycleLength, setCycleLength] = useState(0);
+  const [legendVisible, setLegendVisible] = useState(false);
+  const [selectedLegend, setSelectedLegend] = useState(null);
 
   useEffect(() => {
     const today = new Date();
@@ -248,6 +250,11 @@ const updatePeriodData = async () => {
         <Text style={styles.recordButtonText}>Record Period</Text>
       </TouchableOpacity>
 
+      {/* Legends button */}
+      <TouchableOpacity onPress={() => setLegendVisible(true)} style={styles.legendButton}>
+        <Text style={styles.legendButtonText}>Legends</Text>
+      </TouchableOpacity>
+
       {/* Message box for cycle info */}
       <View style={styles.messageBox}>
         <Text style={styles.messageText}>{texts.lastPeriodRecorded(diffDays)}</Text>
@@ -255,6 +262,23 @@ const updatePeriodData = async () => {
 
       {/* Next period info */}
       <Text style={styles.nextPeriodText}>Next Period Date: {nextPeriodDate}</Text>
+
+      {/* Legend modal */}
+      {legendVisible && (
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalHeader}>Legends</Text>
+            {Object.values(texts.legend).map((item, index) => (
+              <Text key={index} style={styles.legendItem}>
+                <Text style={{ color: item.color }}>●</Text> {item.title}
+              </Text>
+            ))}
+            <TouchableOpacity onPress={() => setLegendVisible(false)} style={styles.closeButton}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
@@ -302,6 +326,55 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  legendButton: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    padding: 10,
+    backgroundColor: '#BC7FCD',
+    borderRadius: 10,
+  },
+  legendButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  modalContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  modalHeader: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  legendItem: {
+    fontSize: 16,
+    marginVertical: 5,
+  },
+  closeButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#BC7FCD',
+    borderRadius: 10,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   messageBox: {
     borderWidth: 1,

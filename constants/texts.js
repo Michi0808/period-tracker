@@ -4,6 +4,35 @@ const texts = {
   periodCycleQuestion: "How long is your menstrual cycle? The average length is 28 days. You can change this at any time.",
   lastPeriodRecorded: (days) => `The last period was recorded on day ${days} of the expected date.`,
   passwordUnmatched: "Passwords don't match!",
+
+  // Legends and descriptions for each phase
+  legend: {
+    menstruation: {
+      title: "Menstruation Period",
+      color: "#ED9B5F",
+      description: "This is when bleeding occurs, typically lasting 3-7 days."
+    },
+    follicular: {
+      title: "Follicular Phase",
+      color: "#DB5EA2",
+      description: "Hormones stimulate the ovaries to prepare an egg, lasting about 6 days."
+    },
+    ovulation: {
+      title: "Ovulation Period",
+      color: "#9E82CD",
+      description: "The egg is released, occurring around the midpoint of the cycle."
+    },
+    luteal: {
+      title: "Luteal Phase",
+      color: "#77B0AA",
+      description: "The body prepares for a possible pregnancy, lasting until the next cycle starts."
+    },
+    nextPeriod: {
+      title: "Next Period",
+      color: "#FA7070",
+      description: "The predicted date for your next period."
+    },
+  },
 };
 
 export default texts;
