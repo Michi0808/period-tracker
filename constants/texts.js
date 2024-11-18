@@ -15,17 +15,17 @@ const texts = {
     follicular: {
       title: "Follicular Phase",
       color: "#DB5EA2",
-      description: "Hormones stimulate the ovaries to prepare an egg, lasting about 6 days."
+      description: "Hormones stimulate the ovaries to prepare an egg, lasting about 6 days. Energy levels and mood often improve, making it a positive and productive time."
     },
     ovulation: {
       title: "Ovulation Period",
       color: "#9E82CD",
-      description: "The egg is released, occurring around the midpoint of the cycle."
+      description: "The egg is released, occurring around the midpoint of the cycle. While energy is high, some may feel slight discomfort or mood swings due to hormonal changes."
     },
     luteal: {
       title: "Luteal Phase",
       color: "#77B0AA",
-      description: "The body prepares for a possible pregnancy, lasting until the next cycle starts."
+      description: "The body prepares for a possible pregnancy, lasting until the next cycle starts. Mood swings, irritability, and fatigue are common, often referred to as PMS symptoms."
     },
     nextPeriod: {
       title: "Next Period",

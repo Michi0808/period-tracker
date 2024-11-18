@@ -269,7 +269,11 @@ const updatePeriodData = async () => {
           <View style={styles.modalContent}>
             <Text style={styles.modalHeader}>Legends</Text>
             {Object.values(texts.legend).map((item, index) => (
-              <Text key={index} style={styles.legendItem}>
+              <Text
+                key={index}
+                style={styles.legendItem}
+                onPress={() => setSelectedLegend(item)}
+              >
                 <Text style={{ color: item.color }}>●</Text> {item.title}
               </Text>
             ))}
@@ -279,6 +283,22 @@ const updatePeriodData = async () => {
           </View>
         </View>
       )}
+
+        {/* Selected Legend modal */}
+        {selectedLegend && (
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalHeader}>{selectedLegend.title}</Text>
+              <Text style={styles.modalDescription}>{selectedLegend.description}</Text>
+              <TouchableOpacity
+                onPress={() => setSelectedLegend(null)}
+                style={styles.closeButton}
+              >
+                <Text style={styles.closeButtonText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
     </View>
   );
 };
@@ -365,6 +385,11 @@ const styles = StyleSheet.create({
   legendItem: {
     fontSize: 16,
     marginVertical: 5,
+  },
+  modalDescription: {
+    fontSize: 16,
+    marginVertical: 10,
+    textAlign: 'center',
   },
   closeButton: {
     marginTop: 20,
