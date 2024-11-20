@@ -1,79 +1,181 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📅 Period Tracker
 
-# Getting Started
+**Period Tracker** is a mobile application built with React Native that helps users track their menstrual cycle and gain valuable insights into their body and health. With an intuitive calendar interface and detailed explanations of cycle phases, this app serves as a handy tool for understanding and managing menstrual health.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+## 🚀 Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- **Cycle Calendar**: Visualize different phases of the menstrual cycle with a clear, color-coded calendar.
+- **Legend Popups**: Interactive legends explaining each phase (Menstruation, Follicular, Ovulation, and Luteal).
+- **Phase Descriptions**: Detailed explanations of how each phase affects the body and mind.
+- **Customizable**: Record your period start date, duration, and cycle length for personalized insights.
+- **Firebase Integration**: Secure authentication and cloud storage using Firebase.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
-```bash
-# using npm
-npm start
+## 🛠️ Tech Stack
 
-# OR using Yarn
-yarn start
-```
+- **Framework**: React Native
+- **Database**: Firebase Firestore
+- **Authentication**: Firebase Authentication
+- **UI Components**: react-native-elements, react-native-calendars
+- **Icons**: react-native-vector-icons
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 📱 Screenshots
 
-### For Android
+### Login Screen
 
-```bash
-# using npm
-npm run android
+![Login Screen](./assets/Screenshot_login.png)
 
-# OR using Yarn
-yarn android
-```
+### Calendar Interface
 
-### For iOS
+![Calendar Interface](./assets/Screenshot_Interface.png)
 
-```bash
-# using npm
-npm run ios
+### Legends Popup
 
-# OR using Yarn
-yarn ios
-```
+![Legends Popup](./assets/Screenshot_Ledends.png)
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Phase Explanation
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+![Phase Explanation Popup](./assets/Screenshot_Phases.png)
 
-## Step 3: Modifying your App
+---
 
-Now that you have successfully run the app, let's modify it.
+## 📝 How to Run the Project
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### Prerequisites
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- Node.js (v14 or later)
+- React Native CLI
+- Android Studio / Xcode (for emulator or physical device testing)
 
-## Congratulations! :tada:
+### Steps to Run
 
-You've successfully run and modified your React Native App. :partying_face:
+1. Clone the repository:
 
-### Now what?
+   ```bash
+   git clone https://github.com/your-username/period-tracker.git
+   cd period-tracker
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+   ```
 
-# Troubleshooting
+2. Install dependencies:
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+   ```bash
+   npm install
 
-# Learn More
+   ```
 
-To learn more about React Native, take a look at the following resources:
+3. Set up Firebase:
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
+   - Add an Android or iOS app to the project.
+   - Download the `google-services.json` (for Android) or `GoogleService-Info.plist` (for iOS).
+   - Place the downloaded file in the appropriate location:
+     - `android/app/google-services.json` for Android.
+     - `ios/GoogleService-Info.plist` for iOS.
+
+4. Run the project:
+
+   - For Android:
+     ```bash
+     npx react-native run-android
+     ```
+   - For iOS:
+     ```bash
+     npx react-native run-ios
+     ```
+   - Ensure that you have a device or emulator running before executing the above commands.
+
+5. Test the Application:
+
+   - Login with test credentials or create a new account to test the authentication flow.
+   - Navigate through the calendar to view the menstrual cycle phases and tap on "Legends" for detailed explanations.
+   - Record a period start date to see the changes reflected in the calendar and calculations.
+   - Verify the Firebase integration by checking for updates in the Firestore database.
+
+6. Troubleshooting:
+   - If you encounter issues with running the project, ensure that:
+     - Your Android emulator or iOS simulator is properly configured and running.
+     - Firebase configurations (`google-services.json` or `GoogleService-Info.plist`) are correctly placed.
+     - All dependencies are installed without errors. Run `npm install` again if needed.
+     - Use `npx react-native doctor` to check for common environment setup issues.
+
+## 🧩 Features in Detail
+
+### 📅 Cycle Calendar
+
+- A color-coded calendar displaying the different phases of the menstrual cycle:
+  - **Menstruation** (Orange)
+  - **Follicular Phase** (Pink)
+  - **Ovulation Period** (Purple)
+  - **Luteal Phase** (Teal)
+- Tapping on a date provides details about the selected phase.
+
+### 📜 Legends and Popups
+
+- The **Legends** button opens a modal explaining the phases with corresponding colors.
+- Tapping on a phase in the legend opens a detailed popup describing its physiological and mental effects.
+
+### 🔒 Firebase Integration
+
+- Secure user authentication using Firebase Authentication.
+- User-specific period data is stored and retrieved from Firebase Firestore.
+
+### 🛠️ Customization
+
+- Users can:
+  - Record the start of their period.
+  - Adjust cycle length and period duration for personalized tracking.
+
+## 🌟 Future Improvements
+
+While **Period Tracker** offers a comprehensive set of features, here are some planned improvements to enhance functionality:
+
+- **Notifications**: Reminders for upcoming periods, ovulation, and other important cycle events.
+- **Analytics**: Graphical insights into cycle trends and patterns over time.
+- **Localization**: Support for multiple languages to make the app more accessible.
+- **Dark Mode**: A user-friendly dark theme for better usability at night.
+- **Symptom Tracking**: Allow users to log symptoms (e.g., cramps, mood changes) for a holistic health overview.
+
+## 🤝 Contributing
+
+Contributions are welcome! If you’d like to contribute to **Period Tracker**, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. Make your changes and commit them:
+   ```bash
+   git commit -m "Add YourFeatureName"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/YourFeatureName
+   5. Open a pull request describing your changes and improvements:
+   - Clearly explain the purpose of your changes.
+   - Include any relevant screenshots or documentation updates.
+   ```
+
+We appreciate all contributions, whether it’s fixing a bug, adding a feature, or improving documentation! For significant changes, please open an issue first to discuss your proposal.
+
+## 🛡️ License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **React Native**: The framework used to build this project.
+- **Firebase**: For providing authentication and real-time database services.
+- **react-native-calendars**: For the calendar UI component.
+- **Sofy.jp**: For providing detailed information about menstrual cycles, which inspired the descriptions.
+- Everyone who contributed to improving this project!
+
+Thank you for exploring **Period Tracker**! Your feedback and contributions are highly valued. 😊
