@@ -26,21 +26,17 @@
 
 ## 📱 Screenshots
 
-### Login Screen
+<h4>Login Screen</h4>
+<img src="./assets/Screenshot_login.png" alt="Login Screen" width="500">
 
-![Login Screen](./assets/Screenshot_login.png)
+<h4>Calendar Interface</h4>
+<img src="./assets/Screenshot_Interface.png" alt="Calendar Interface" width="500">
 
-### Calendar Interface
+<h4>Legends Popup</h4>
+<img src="./assets/Screenshot_Ledends.png" alt="Legends Popup" width="500">
 
-![Calendar Interface](./assets/Screenshot_Interface.png)
-
-### Legends Popup
-
-![Legends Popup](./assets/Screenshot_Ledends.png)
-
-### Phase Explanation
-
-![Phase Explanation Popup](./assets/Screenshot_Phases.png)
+<h4>Phase Explanation</h4>
+<img src="./assets/Screenshot_Phases.png" alt="Phase Explanation Popup" width="500">
 
 ---
 
