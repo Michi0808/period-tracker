@@ -16,27 +16,31 @@
 
 ## 🛠️ Tech Stack
 
+- **Language**: TypeScript, JavaScript
 - **Framework**: React Native
 - **Database**: Firebase Firestore
 - **Authentication**: Firebase Authentication
 - **UI Components**: react-native-elements, react-native-calendars
 - **Icons**: react-native-vector-icons
+- **Development Tools**:
+  - **Android Studio**: For Android development and emulator testing
+  - **Node.js**: For running the development environment and managing dependencies
 
 ---
 
 ## 📱 Screenshots
 
 <h4>Login Screen</h4>
-<img src="./assets/Screenshot_login.png" alt="Login Screen" width="500">
+<img src="./assets/Screenshot_login.png" alt="Login Screen" width="400">
 
 <h4>Calendar Interface</h4>
-<img src="./assets/Screenshot_Interface.png" alt="Calendar Interface" width="500">
+<img src="./assets/Screenshot_Interface.png" alt="Calendar Interface" width="400">
 
 <h4>Legends Popup</h4>
-<img src="./assets/Screenshot_Ledends.png" alt="Legends Popup" width="500">
+<img src="./assets/Screenshot_Ledends.png" alt="Legends Popup" width="400">
 
 <h4>Phase Explanation</h4>
-<img src="./assets/Screenshot_Phases.png" alt="Phase Explanation Popup" width="500">
+<img src="./assets/Screenshot_Phases.png" alt="Phase Explanation Popup" width="400">
 
 ---
 
@@ -53,7 +57,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/period-tracker.git
+   git clone https://github.com/Michi0808/period-tracker.git
    cd period-tracker
 
    ```
@@ -65,16 +69,7 @@
 
    ```
 
-3. Set up Firebase:
-
-   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
-   - Add an Android or iOS app to the project.
-   - Download the `google-services.json` (for Android) or `GoogleService-Info.plist` (for iOS).
-   - Place the downloaded file in the appropriate location:
-     - `android/app/google-services.json` for Android.
-     - `ios/GoogleService-Info.plist` for iOS.
-
-4. Run the project:
+3. Run the project:
 
    - For Android:
      ```bash
@@ -86,19 +81,11 @@
      ```
    - Ensure that you have a device or emulator running before executing the above commands.
 
-5. Test the Application:
+4. Test the Application:
 
    - Login with test credentials or create a new account to test the authentication flow.
    - Navigate through the calendar to view the menstrual cycle phases and tap on "Legends" for detailed explanations.
    - Record a period start date to see the changes reflected in the calendar and calculations.
-   - Verify the Firebase integration by checking for updates in the Firestore database.
-
-6. Troubleshooting:
-   - If you encounter issues with running the project, ensure that:
-     - Your Android emulator or iOS simulator is properly configured and running.
-     - Firebase configurations (`google-services.json` or `GoogleService-Info.plist`) are correctly placed.
-     - All dependencies are installed without errors. Run `npm install` again if needed.
-     - Use `npx react-native doctor` to check for common environment setup issues.
 
 ## 🧩 Features in Detail
 
